@@ -62,13 +62,13 @@ def score(nice,mean,name):
 
 def win(nice,mean,name):
     # Substitute the {} wildcards with our variable values
-    print('Nice job {},you win! Everyone loves you and made lots of friends along the way').format((name))
+    print('Nice job {},you win! Everyone loves you and made lots of friends along the way'.format(name))
     # call again function and pass in our variables
     again(nice,mean,name)
     
 def lose(nice,mean,name):
     #Substitute the {} wilcards with our variable values
-    print('\nAhhh too bad, Game Over \n{}, you live in a van alone \nby the river meanie').format((name))
+    print('\nAhhh too bad, Game Over \n{}, you live in a van alone \nby the river meanie'.format(name))
     #call again function and pass in our variable values
     again(nice,mean,name)
     
