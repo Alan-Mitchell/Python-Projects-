@@ -24,20 +24,19 @@ with con:
                 ('John','Smith','js@aol.com'))
     cur.execute('INSERT INTO tbl_example1(col_fname,col_lname,col_email) VALUES(?,?,?)',\
                 ('Jane','Doe','jd@aol.com')) 
-    
-   
-    conn.commit()
-conn.close()
-
-import os
-
 fileList =('information.docx','Hello.txt','myImage.png',\
            'myMovie.mpg','World.txt','data.pdf','myPhoto.jpg')
-ext='.txt'
+for x in fileList:
+    if x.endswith('.txt'):
+        with conn:
+            cur = conn.cursor()
+            cur.execute('INSERT INTO tbl_example1(col_email)VALUES (?)'(x,))
 
-all_txt=[ i for i in fileList if os.path.splitext(i)[1] == ext]
+   
+conn.commit()
+conn.close()
 
-print(all_txt)
+
 
 
 
