@@ -25,13 +25,12 @@ class ParentWindow(Frame):
         self.master.minsize(500,300) #(Height, Width)
         self.master.maxsize(500,300)
         #this CenterWindow method will center our app on the user's screen
-        check_files_func.center_window(self,500,300)
+        self.master.eval('tk::PlaceWindow . Center')
         self.master.title('Check Files')
-        self.master.configure(bg='FOFOFO')
-        #this protocol method is a built-in method to catch if
-        #the user clicks the upper corner X on Windows.
-        self.master.protocol('WM_DELETE_WINDOW',lambda: check_files_func.ask_quit(self))
+        self.master.configure(bg='#F0F0F0')
+      
         arg=self.master
+        check_files_GUI.load_gui(self)
 
         #load in the GUI widget from a seperate module
         #keeping your code compartmetalized and clutter free.
