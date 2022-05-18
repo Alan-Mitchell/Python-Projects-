@@ -10,7 +10,7 @@ def home(request):
         pk = request.POST['account']
         return balance(request, pk)
     content = {'form': form}
-    return render(request, 'checkbook/index.html')
+    return render(request, 'checkbook/index.html', content)
 
 def create_account(request):
     form = AccountForm(data=request.POST or None)
@@ -19,10 +19,10 @@ def create_account(request):
             form.save()
             return redirect('index')
     content = {'form':form}
-    return render(request, 'checkbook/CreateNewAccount.html')
+    return render(request, 'checkbook/CreateNewAccount.html', content)
 
 def balance(request, pk):
-    account = get_object_or_404(Account, pk=pk)
+    account = get_object_or_404(Account, pk = pk)
     transactions = Transaction.Transactions.filter(account = pk)
     current_total = account.initial_deposit
     table_contents = { }
@@ -34,8 +34,8 @@ def balance(request, pk):
             current_total -= t.amount
             table_contents.update({t: current_total})
 
-    content = {'account': account, 'table_contents':table_contents, 'balance':current_total}
-    return render(request, 'checkbook/BalanceSheet.html',content)
+    content = {'account': account, 'table_contents':table_contents, 'balance': current_total}
+    return render(request, 'checkbook/BalanceSheet.html', content)
 
 def transaction(request):
     form = AccountForm(data=request.POST or None)
@@ -46,4 +46,4 @@ def transaction(request):
             form.save()
             return balance(request, pk)
     content = {'form': form}
-    return render(request, 'checkbook/AddTransaction.html')
+    return render(request, 'checkbook/AddTransaction.html', content)
