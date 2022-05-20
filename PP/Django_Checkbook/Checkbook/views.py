@@ -38,7 +38,7 @@ def balance(request, pk):
     return render(request, 'checkbook/BalanceSheet.html', content)
 
 def transaction(request):
-    form = AccountForm(data=request.POST or None)
+    form = TransactionForm(data=request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
